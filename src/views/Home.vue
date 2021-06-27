@@ -1,18 +1,27 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    todos_len => {{ todos_len }}
+    <test />
+      <div>
+       <button @click="getTodos">getTodos</button>
+      </div>
+      {{ todos }}
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import test from '@/components/test.vue'
+import { mapState, mapActions, mapGetters } from 'vuex'
 export default {
   name: 'Home',
-  components: {
-    HelloWorld
-  }
+  computed: {
+    ...mapGetters(['todos_len']),
+    ...mapState(['todos'])
+  },
+  methods: {
+    ...mapActions(['getTodos'])
+  },
+  components: {test}
 }
 </script>
